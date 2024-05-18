@@ -1,0 +1,32 @@
+<div class="field">
+    <label for="">{{ label }}</label>
+    <input [formControl]="control" *ngIf="inputType !== 'textarea'" [type]="inputType">
+    <textarea [formControl]="control" *ngIf="inputType == 'textarea'"></textarea>
+    <div class="ui pointing red basic label" *ngIf="showError()">
+        <div *ngIf="control.errors.required">
+            This is a mandatory field.
+        </div>
+        <div *ngIf="control.errors.minlength">
+            Minimum length for <ng-content select="[minlength]"></ng-content> is {{control.errors.minlength.requiredLength }}.  
+        </div>
+        <div *ngIf="control.errors.maxlength">
+            Minimum length for <ng-content select="[maxlength]"></ng-content> is {{control.errors.maxlength.requiredLength }}.
+        </div>
+        <div *ngIf="control.errors.pattern">
+            <ng-content select="[pattern]"></ng-content>
+        </div>
+        <div *ngIf="control.errors.nonUniqueUsername">
+            <ng-content select="[nonUniqueUsername]"></ng-content>
+        </div>
+        <div *ngIf="control.errors.email">
+            Please enter a valid Email.
+        </div>
+        <!-- <div *ngIf="control.parent.errors">
+            <p *ngIf="control.parent.errors.matchPassword"><ng-content select="[passwordMatch]"></ng-content></p>
+        </div> -->
+        <div *ngIf="control.errors.noConnection">
+            <ng-content select="[noConnection]"></ng-content>
+        </div>
+    </div>
+    <!-- <div>{{ control.errors | json }}</div> -->
+</div>

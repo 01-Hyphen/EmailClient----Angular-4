@@ -1,0 +1,68 @@
+<h3>Create an Account</h3>
+<form class="ui form" [formGroup]="signupForm" (ngSubmit)="submit()">
+    <!-- <div class="field">
+        <label for="">Username</label>
+        <input type="text" formControlName="username">
+        <div *ngIf="signupForm.controls.username.errors && 
+        (signupForm.controls.username.dirty || signupForm.controls.username.touched || signupForm.controls.username.pristine )">
+            <div *ngIf="signupForm.controls.username.errors.required">
+                This is a mandatory field.
+            </div>
+            <div *ngIf="signupForm.controls.username.errors.minlength">
+                Minimum length for username is {{signupForm.controls.username.errors.minlength.requiredLength}}.
+            </div>
+            <div *ngIf="signupForm.controls.username.errors.maxlength">
+                Maximum length for username is {{signupForm.controls.username.errors.maxlength.requiredLength}}.
+            </div>
+            <div *ngIf="signupForm.controls.username.errors.pattern">
+                Only letters and numbers are allowed.
+            </div>
+            <div *ngIf="signupForm.controls.username.errors.nonUniqueUsername">
+                Username is not available.
+            </div>
+        </div>
+        <div>{{ signupForm.controls.username.errors | json }}</div>
+    </div> -->
+    <!-- <div class="field">
+        <label for="">Password</label>
+        <input type="text" formControlName="password">
+        <div>{{ signupForm.controls.password.errors | json }}</div>
+    </div>
+    <div class="field">
+        <label for="">Password Confirmation</label>
+        <input type="text" formControlName="passwordConfirmation">
+        <div>{{ signupForm.controls.passwordConfirmation.errors | json }}</div>
+    </div> -->
+    <app-input [control]="signupForm.controls.username" type="text" label="Username">
+        <!-- <ng-container reuired></ng-container> -->
+        <ng-container minlength>Username</ng-container>
+        <ng-container maxlength>Username</ng-container>
+        <ng-container pattern>Only letters and numbers are allowed.</ng-container>
+        <ng-container nonUniqueUsername>Username is not available.</ng-container>
+        <ng-container noConnection>Can't tell username available or not. Kindly check your connection.</ng-container>
+    </app-input>
+    <app-input [control]="signupForm.controls.password" type='password' label="Password">
+        <ng-container minlength>Password</ng-container>
+        <ng-container maxlength>Password</ng-container>
+    </app-input>
+    <app-input [control]="signupForm.controls.passwordConfirmation" type='password' label="Password Confirmation">
+        <ng-container passwordMatch >Passwords are not matching.</ng-container>
+        <ng-container minlength>Password</ng-container>
+        <ng-container maxlength>Password</ng-container>
+    </app-input>
+    <div class="ui red basic label" *ngIf="signupForm.errors && signupForm.controls.password.touched && signupForm.controls.passwordConfirmation.touched">
+        <p *ngIf="signupForm.errors.matchPassword">Passwords are not matching.</p>
+        <p *ngIf="signupForm.errors.noConnection">Please check  your connection.</p>
+        <p *ngIf="signupForm.errors.otherIssue">Something went wrong.</p>
+    </div>
+    <div>
+        <button class="ui submit button primary" type="submit">
+            Submit
+        </button>
+    </div>
+</form>
+
+ <!-- <div>Form Content: {{ signupForm.value | json }}</div> -->
+ <!-- <div>Form Valid: {{signupForm.valid}}</div>
+<div>Form Errors : {{ signupForm.errors | json }}</div>  -->
+

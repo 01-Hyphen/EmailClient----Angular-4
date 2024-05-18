@@ -1,0 +1,21 @@
+<h3>Sign In</h3>
+<form class="ui form" [formGroup]="signinForm" (ngSubmit)="onSubmit()" >
+    <app-input [control]="signinForm.controls.username" type="text" label="Username">
+        <ng-container minlength>Username</ng-container>
+        <ng-container maxlength>Username</ng-container>
+        <ng-container pattern>Only letters and numbers are allowed.</ng-container>
+    </app-input>
+    <app-input [control]="signinForm.controls.password" type="password" label="Password">
+        <ng-container minlength>Password</ng-container>
+        <ng-container maxlength>Password</ng-container>
+    </app-input>
+    <div class="ui red basic label" *ngIf="signinForm.errors">
+        <p *ngIf="signinForm.errors.invalidCreds">Invalid Credentials</p>
+        <p *ngIf="signinForm.errors.otherIssue">Something went wrong...</p>
+    </div>
+    <div>
+        <button class="ui submit button primary" type="submit">
+            Submit
+        </button>
+    </div>
+</form>
